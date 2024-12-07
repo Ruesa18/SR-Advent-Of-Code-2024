@@ -23,7 +23,22 @@ class LocationListManager extends AbstractSolutionManager {
 		return array_sum($distances);
 	}
 
-	public function formatInput($fileContent): mixed {
+	public function getLocationSimilarityScore(array $leftList, array $rightList): int {
+		$similarityScore = 0;
+		foreach($leftList as $leftLocation) {
+			$locationCount = 0;
+
+			foreach($rightList as $rightLocation) {
+				if($leftLocation === $rightLocation) {
+					$locationCount++;
+				}
+			}
+			$similarityScore += $locationCount * $leftLocation;
+		}
+		return $similarityScore;
+	}
+
+	public function formatInput($fileContent): array {
 		$leftList = [];
 		$rightList = [];
 		$array = explode("\n", $fileContent);

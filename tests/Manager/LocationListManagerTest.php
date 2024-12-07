@@ -21,4 +21,17 @@ class LocationListManagerTest extends KernelTestCase {
 
 		$this->assertEquals($expectedDistance, $actualDistance);
 	}
+
+	public function testGetLocationSimilarityScore(): void {
+		$locationListManager = new LocationListManager();
+
+		$leftList = [3, 4, 2, 1, 3, 3];
+		$rightList = [4, 3, 5, 3, 9, 3];
+
+		$expectedSimilarityScore = 31;
+
+		$actualSimilarityScore = $locationListManager->getLocationSimilarityScore($leftList, $rightList);
+
+		$this->assertEquals($expectedSimilarityScore, $actualSimilarityScore);
+	}
 }

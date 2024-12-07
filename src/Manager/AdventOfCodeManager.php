@@ -42,7 +42,7 @@ class AdventOfCodeManager {
 
 	public function retrieveInstructionsPart(string $content): string {
 		$crawler = new Crawler($content);
-		return $crawler->filter('.day-desc')->html();
+		return $crawler->filter('main')->html();
 	}
 
 	/**

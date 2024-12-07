@@ -45,7 +45,10 @@ class RunSolutionCommand extends Command {
 				$manager = new LocationListManager();
 				$arrays = $manager->formatInput($input);
 				$locationDistance = $manager->getLocationDistance($arrays['left'], $arrays['right']);
-				$output->writeln(sprintf('The location distance is %s! 🎄', $locationDistance));
+				$output->writeln(sprintf('Part 1: The location distance is %s! 🎄', $locationDistance));
+
+				$locationSimilarityScore = $manager->getLocationSimilarityScore($arrays['left'], $arrays['right']);
+				$output->writeln(sprintf('Part 2: The location similarity is %s! 🎄', $locationSimilarityScore));
 				break;
 			default:
 				$output->writeln('This day has not been solved yet 🌲');
