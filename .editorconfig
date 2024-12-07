@@ -8,3 +8,7 @@ indent_size = 4
 
 [{docker-compose.yml, docker-compose.override.yml}]
 indent_style = space
+
+[var/storage/**]
+insert_final_newline = false
+
