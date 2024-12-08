@@ -7,6 +7,7 @@ use App\Exception\UnequalCountException;
 use App\Exception\UnexpectedTypeException;
 use App\Manager\AdventOfCodeManager;
 use App\Manager\LocationListManager;
+use App\Manager\ReactorReportManager;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -49,6 +50,13 @@ class RunSolutionCommand extends Command {
 
 				$locationSimilarityScore = $manager->getLocationSimilarityScore($arrays['left'], $arrays['right']);
 				$output->writeln(sprintf('Part 2: The location similarity is %s! 🎄', $locationSimilarityScore));
+				break;
+			case 2:
+				$manager = new ReactorReportManager();
+				$reactorReports = $manager->formatInput($input);
+				$safeReactorReportCount = $manager->countSafeReactorReports($reactorReports);
+				$output->writeln(sprintf('Part 1: The amount of safe reports is %s! 🎄', $safeReactorReportCount));
+
 				break;
 			default:
 				$output->writeln('This day has not been solved yet 🌲');
