@@ -3,10 +3,12 @@
 namespace App\Command;
 
 use App\Exception\AdventOfCodeException;
+use App\Exception\InvalidArgumentException;
 use App\Exception\UnequalCountException;
 use App\Exception\UnexpectedTypeException;
 use App\Manager\AdventOfCodeManager;
 use App\Manager\LocationListManager;
+use App\Manager\ProgramInstructionManager;
 use App\Manager\ReactorReportManager;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -29,6 +31,7 @@ class RunSolutionCommand extends Command {
 	 * @throws UnequalCountException
 	 * @throws UnexpectedTypeException
 	 * @throws AdventOfCodeException
+	 * @throws InvalidArgumentException
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output): int {
 		$day = $input->getArgument(self::ARG_DAY);
@@ -57,6 +60,15 @@ class RunSolutionCommand extends Command {
 				$safeReactorReportCount = $manager->countSafeReactorReports($reactorReports);
 				$output->writeln(sprintf('Part 1: The amount of safe reports is %s! 🎄', $safeReactorReportCount));
 
+				break;
+			case 3:
+				$manager = new ProgramInstructionManager();
+				$instructionLines = $manager->formatInput($input);
+				$result = $manager->execute($instructionLines);
+				$output->writeln(sprintf('Part 1: The result of the instructions is %s! 🎄', $result));
+
+				$resultWithDoAndDont = $manager->execute($instructionLines, true);
+				$output->writeln(sprintf('Part 2: The result of the instructions is %s! 🎄', $resultWithDoAndDont));
 				break;
 			default:
 				$output->writeln('This day has not been solved yet 🌲');

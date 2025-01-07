@@ -16,7 +16,8 @@
         "symfony/http-client": "7.2.*",
         "symfony/runtime": "7.2.*",
         "symfony/yaml": "7.2.*",
-		"ext-dom": "*"
+		"ext-dom": "*",
+		"ext-bcmath": "*"
 	},
     "require-dev": {
 		"roave/security-advisories": "dev-latest",
